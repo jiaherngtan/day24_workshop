@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Order</title>
+</head>
+
+<body>
+    <h1>Create an order</h1>
+    <form action="/addOrder" method="POST">
+        <table>
+            <tr>
+                <td>Product:</td>
+                <td><input type="text" name="product"></td>
+            </tr>
+            <tr>
+                <td>Unit price:</td>
+                <td><input type="number" name="price"></td>
+            </tr>
+            <tr>
+                <td>Discount:</td>
+                <td><input type="number" name="discount"></td>
+            </tr>
+            <tr>
+                <td>Quantity:</td>
+                <td><input type="number" name="quantity"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit">Add to Cart</button></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+    <h1>Your current order</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Unit Price</th>
+                <th>Discount</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p: ${products}">
+                <td><span th:text="${p.productName}"></span></td>
+                <td><span th:text="${p.unitPrice}"></span></td>
+                <td><span th:text="${p.discount}"></span></td>
+                <td><span th:text="${p.quantity}"></span></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <form method="POST" action="/checkout">
+                        <button type="submit">Checkout</button>
+                    </form>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>
